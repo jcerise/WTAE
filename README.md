@@ -5,18 +5,14 @@ The Web Text Adventure Engine is my attempt to create a text based game engine t
 
 The goals of this project are as follows:
 
--Give the user a terminal like environment to run the game in (for that retro old school feel)
-
--Provide a basic set of commands the user can input
---Directions: North, South, East, West, Up, Down
---Interactions: Look, examine, talk, take, drop, use, open
---Various help screens explaining how the game works, accessible through 'help' or '?'
-
--Provide an RPG like character creation, leveling, and combat system
-
--Allow for easy creation of new games (stories?) through the use of easy to edit XML files. No programming required.
-
--Allow for custom, advanced commands and events
+1.Give the user a terminal like environment to run the game in (for that retro old school feel)
+2.Provide a basic set of commands the user can input
+    1.Directions: North, South, East, West, Up, Down
+    2.Interactions: Look, examine, talk, take, drop, use, open
+    3.Various help screens explaining how the game works, accessible through 'help' or '?'
+4.Provide an RPG like character creation, leveling, and combat system
+5.Allow for easy creation of new games (stories?) through the use of easy to edit XML files. No programming required.
+6.Allow for custom, advanced commands and events
 
 The engine is, at the moment, in the very early planning stages, and is still be experimented on by myself, so don't be
 surprised if a lot of the above isn't in place yet.
