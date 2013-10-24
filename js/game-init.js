@@ -7,7 +7,7 @@ Game.Data = {
         instructions: 'Type start to begin, or help for further instructions.',
         commands: {
             start: function(){
-                Game.Engine.switchRooms('tavern');
+                Game.Engine.Area.switchAreas('tavern');
             }
         }
     },
@@ -18,10 +18,10 @@ Game.Data = {
                 'sits to your north. A storeroom is to the east.',
             commands: {
                 north: function(){
-                    Game.Engine.switchRooms('townSquare');
+                    Game.Engine.Area.switchAreas('townSquare');
                 },
                 east: function() {
-                    Game.Engine.switchRooms('storeRoom');
+                    Game.Engine.Area.switchAreas('storeRoom');
                 }
             }
         },
@@ -30,7 +30,7 @@ Game.Data = {
             description: 'This is a simple store room for the tavern, there is nothing special here. The exit is to the west.',
             commands: {
                 west: function(){
-                    Game.Engine.switchRooms('tavern');
+                    Game.Engine.Area.switchAreas('tavern');
                 }
             }
         },
@@ -39,7 +39,7 @@ Game.Data = {
             description: 'The town square is more or less abandoned at this hour. The tavern is to the south.',
             commands: {
                 south: function(){
-                    Game.Engine.switchRooms('tavern');
+                    Game.Engine.Area.switchAreas('tavern');
                 }
             }
         }

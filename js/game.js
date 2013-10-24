@@ -1,6 +1,6 @@
 var Game = {
     init: function() {
-        Game.Engine.loadTitle();
+        Game.Engine.Area.loadTitle();
     }
 };
 

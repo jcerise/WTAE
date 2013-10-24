@@ -1,16 +1,25 @@
-Game.Engine = {
+Game.Engine = {};
 
+Game.Engine.Area = {
+
+    /*
+    Area Handling
+     */
+
+    /**
+     * Load the title screen(area). This differs from other areas in formatting, and a more limited command set
+     */
     loadTitle : function() {
         var titleArea = Game.Data['titleScreen'];
         var description = titleArea.description;
-        var lines = this.createTextLines(description, 105);
+        var lines = Game.Engine.Text.createTextLines(description, 105);
 
         wtaeTerminal.push(this.loadCommands(titleArea['commands'], true), {
             prompt: '>'
         });
         wtaeTerminal.clear();
-        wtaeTerminal.echo('[[iub;#aaa;#000]' + titleArea.title +']');
-        wtaeTerminal.echo('Created and Written by: ' + titleArea.author);
+        Game.Engine.Text.echoCenteredText(titleArea.title, '[iub;#aaa;#000]');
+        Game.Engine.Text.echoCenteredText('Created and Written by: ' + titleArea.author);
         wtaeTerminal.echo('');
         for (var i = 0; i < lines.length; i++) {
             wtaeTerminal.echo(lines[i]);
@@ -18,6 +27,11 @@ Game.Engine = {
         wtaeTerminal.echo(titleArea.instructions);
     },
 
+    /**
+     * Load up a new area. Output the area title, the description, and any other relevant information.
+     * Also, change out the command set to match the new area
+     * @param area The new area to be loaded
+     */
     loadArea : function(area) {
 
         wtaeTerminal.pop();
@@ -26,7 +40,7 @@ Game.Engine = {
         });
         wtaeTerminal.clear();
         var description = area.description;
-        var lines = this.createTextLines(description, 105);
+        var lines = Game.Engine.Text.createTextLines(description, 105);
 
         wtaeTerminal.echo('[[iub;#aaa;#000]' + area.title +']');
         wtaeTerminal.echo('');
@@ -36,11 +50,23 @@ Game.Engine = {
         wtaeTerminal.echo('');
     },
 
-    switchRooms : function(area) {
+    /**
+     * Initiate an area switch
+     * @param area The new Area to switch to
+     */
+    switchAreas : function(area) {
         var curArea = Game.Data['areas'][area];
         this.loadArea(curArea);
     },
 
+    /**
+     * Load up a fresh command set. If this is for the title screen, or other admin screens, do not load the base
+     * command sets, only load commands defined for the area.
+     * Otherwise, load up the base commands, and extend them with the area specific command set.
+     * @param commands List of Area specific commands to load
+     * @param isTitle Is this an admin screen?
+     * @returns {*} The CommandSet object to use for the loaded area
+     */
     loadCommands : function(commands, isTitle) {
         isTitle = isTitle || false;
         var commandSet = null;
@@ -54,10 +80,34 @@ Game.Engine = {
         }
         commandSet.addCommands(commands);
         return commandSet;
-    },
+    }
+};
 
-    centerText : function() {
+Game.Engine.Text = {
 
+    /*
+    Text Output handling
+     */
+    /**
+     * Takes a string and centers its output on the terminal. Will also accept format strings.
+     * @param text The string to be centered and output
+     * @param formatString (Optional) The format string to apply to the centered text
+     */
+    echoCenteredText : function(text, formatString) {
+        formatString = formatString || '';
+        var cols = wtaeTerminal.cols();
+        var precedingSpaces = Math.round((cols / 2) - (text.length / 2));
+
+        var spaces = '';
+        for(var i = 0; i <= precedingSpaces; i ++) {
+            spaces += ' ';
+        }
+
+        if (formatString != '') {
+            wtaeTerminal.echo(spaces + '[' + formatString + text + ']');
+        } else {
+            wtaeTerminal.echo(spaces + formatString + text);
+        }
     },
 
     /**
@@ -88,4 +138,4 @@ Game.Engine = {
         newLines.push(line);
         return newLines;
     }
-}
+};

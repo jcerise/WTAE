@@ -22,6 +22,11 @@ GameCommands.CommandSet = function(properties) {
     }
 };
 
+/**
+ * Add new commands this commandSet, extending the total list of commands. If a command already exists, it will be
+ * overwritten by the new command
+ * @param commands List of command objects to extend the base command set with
+ */
 GameCommands.CommandSet.prototype.addCommands = function(commands) {
         //Copy over all the properties from each command, as long as its not the init or name properties
         //This will overwrite commands, so that later defined commands can override defaults
@@ -39,6 +44,11 @@ GameCommands.CommandSet.prototype.addCommands = function(commands) {
         }
 }
 
+/**
+ * Check if the commandSet has a certain command or not
+ * @param obj Either the command object, or a string
+ * @returns {*} true if the commandSet has the command
+ */
 GameCommands.CommandSet.prototype.hasCommand = function(obj) {
     //Allow passing the command object itself or the name of the command as a string
     if (typeof obj === 'object') {
