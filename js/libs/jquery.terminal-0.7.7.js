@@ -2290,7 +2290,8 @@
                         } : undefined
                     });
                 } else {
-                    terminal.error("Command '" + command.name + "' Not Found");
+                    //terminal.error("Command '" + command.name + "' Not Found");
+                    terminal.echo("You can't do that here...");
                 }
             };
         }

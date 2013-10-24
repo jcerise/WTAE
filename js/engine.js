@@ -5,7 +5,7 @@ Game.Engine = {
         var description = titleArea.description;
         var lines = this.createTextLines(description, 105);
 
-        wtaeTerminal.push(this.loadCommands(titleArea['commands']), {
+        wtaeTerminal.push(this.loadCommands(titleArea['commands'], true), {
             prompt: '>'
         });
         wtaeTerminal.clear();
@@ -20,6 +20,7 @@ Game.Engine = {
 
     loadArea : function(area) {
 
+        wtaeTerminal.pop();
         wtaeTerminal.push(this.loadCommands(area['commands']), {
             prompt: '>'
         });
@@ -40,11 +41,18 @@ Game.Engine = {
         this.loadArea(curArea);
     },
 
-    loadCommands : function(commands) {
-        var commandSet = new GameCommands.CommandSet(Game.BaseCommands);
-        commandSet.addCommands(commands)
+    loadCommands : function(commands, isTitle) {
+        isTitle = isTitle || false;
+        var commandSet = null;
 
-        console.log(commandSet);
+        //The title screen should not allow basic commands (movement, looking, etc), only the commands necessary
+        //to start the game (defined as part of the title area)
+        if (isTitle) {
+            commandSet = new GameCommands.CommandSet();
+        } else {
+            commandSet = new GameCommands.CommandSet(Game.BaseCommands);
+        }
+        commandSet.addCommands(commands);
         return commandSet;
     },
 
