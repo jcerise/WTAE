@@ -1,44 +1,51 @@
 Game.Engine = {
+
     loadTitle : function() {
         var titleArea = Game.Data['titleScreen'];
         var description = titleArea.description;
         var lines = this.createTextLines(description, 105);
 
-        $('.terminal').terminal(titleArea, {
-            onInit : function(terminal) {
-                terminal.echo('Created and Written by: ' + titleArea.author);
-                terminal.echo('');
-                for (var i = 0; i < lines.length; i++) {
-                    terminal.echo(lines[i]);
-                }
-                terminal.echo(titleArea.instructions);
-            },
-            greetings : '[[iub;#aaa;#000]' + titleArea.title +']'
+        wtaeTerminal.push(this.loadCommands(titleArea['commands']), {
+            prompt: '>'
         });
+        wtaeTerminal.clear();
+        wtaeTerminal.echo('[[iub;#aaa;#000]' + titleArea.title +']');
+        wtaeTerminal.echo('Created and Written by: ' + titleArea.author);
+        wtaeTerminal.echo('');
+        for (var i = 0; i < lines.length; i++) {
+            wtaeTerminal.echo(lines[i]);
+        }
+        wtaeTerminal.echo(titleArea.instructions);
     },
 
     loadArea : function(area) {
-        var term = $('.terminal').terminal();
-        term.pop();
-        term.push(area, {
+
+        wtaeTerminal.push(this.loadCommands(area['commands']), {
             prompt: '>'
         });
-        term.clear();
+        wtaeTerminal.clear();
         var description = area.description;
         var lines = this.createTextLines(description, 105);
 
-        term.echo('[[iub;#aaa;#000]' + area.title +']');
-        term.echo('');
+        wtaeTerminal.echo('[[iub;#aaa;#000]' + area.title +']');
+        wtaeTerminal.echo('');
         for (var i = 0; i < lines.length; i++) {
-            term.echo(lines[i]);
+            wtaeTerminal.echo(lines[i]);
         }
-        term.echo('');
+        wtaeTerminal.echo('');
     },
 
     switchRooms : function(area) {
         var curArea = Game.Data['areas'][area];
-        console.log(curArea);
         this.loadArea(curArea);
+    },
+
+    loadCommands : function(commands) {
+        var commandSet = new GameCommands.CommandSet(Game.BaseCommands);
+        commandSet.addCommands(commands)
+
+        console.log(commandSet);
+        return commandSet;
     },
 
     centerText : function() {
