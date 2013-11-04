@@ -15,7 +15,6 @@ Game.Engine.Area = {
         var titleArea = Game.Data['titleScreen'];
         this.curArea = titleArea;
         var description = titleArea.description;
-        var lines = Game.Engine.Text.createTextLines(description, 105);
 
         wtaeTerminal.push(this.loadCommands(titleArea['commands'], true), {
             prompt: '>'
@@ -24,10 +23,27 @@ Game.Engine.Area = {
         Game.Engine.Text.echoCenteredText(titleArea.title, '[iub;#aaa;#000]');
         Game.Engine.Text.echoCenteredText('Created and Written by: ' + titleArea.author);
         wtaeTerminal.echo('');
-        for (var i = 0; i < lines.length; i++) {
-            wtaeTerminal.echo(lines[i]);
-        }
+        Game.Engine.Text.echoParagraphs(description);
         wtaeTerminal.echo(titleArea.instructions);
+    },
+
+    /**
+     * Load the introduction area. This is very similar to the title, but does not contain author or adventure
+     * information. It is intended to set the scene.
+     */
+    loadIntroduction : function() {
+        var introArea = Game.Data['introduction'];
+        this.curArea = introArea;
+        var description = introArea.description;
+
+        wtaeTerminal.push(this.loadCommands(introArea['commands'], true), {
+            prompt: '>'
+        });
+        wtaeTerminal.clear();
+        Game.Engine.Text.echoCenteredText(introArea.title, '[iub;#aaa;#000]');
+        wtaeTerminal.echo('');
+        Game.Engine.Text.echoParagraphs(description);
+        wtaeTerminal.echo(introArea.instructions);
     },
 
     /**
@@ -106,6 +122,11 @@ Game.Engine.Parser = {
     Command Parsing
      */
 
+    /**
+     * If there is not a primary command available for the current area, check the synonyms list for a match, and if
+     * found run the match
+     * @param command The entered command, along with any arguments passed ('talk to barkeep')
+     */
     checkForSynonyms : function(command) {
         var arguments = command.args;
         var commandName = command.name;
@@ -157,11 +178,29 @@ Game.Engine.Text = {
         }
     },
 
+    /**
+     * Echo text to the terminal, clearing the terminal, and outputting the area title as well. The output will be
+     * broken into lines, but not paragraphs.
+     * @param text The text to output
+     */
     echo : function(text) {
         //Clear the terminal of other input and output, except the area description and name
         Game.Engine.Area.displayTitle();
 
         var cols = wtaeTerminal.cols();
+        var lines = this.createTextLines(text, cols);
+        for (var i = 0; i < lines.length; i++) {
+            wtaeTerminal.echo(lines[i]);
+        }
+    },
+
+    /**
+     * Echo text to the terminal without clearing the terminal, or re-outputting the titles. The output will be
+     * broken into lines.
+     * @param text The text to output
+     */
+    straightEcho : function(text) {
+        var cols = wtaeTerminal.cols() - 5;
         var lines = this.createTextLines(text, cols);
         for (var i = 0; i < lines.length; i++) {
             wtaeTerminal.echo(lines[i]);
@@ -195,5 +234,14 @@ Game.Engine.Text = {
 
         newLines.push(line);
         return newLines;
+    },
+
+    echoParagraphs : function(text) {
+        var paragraphs = text.split('<p>');
+
+        for (var i = 0; i < paragraphs.length; i ++) {
+            this.straightEcho(paragraphs[i]);
+            wtaeTerminal.echo('');
+        }
     }
 };

@@ -1,19 +1,46 @@
 //Initialize the game object
 Game.Data = {
     titleScreen: {
-        title: 'Test Text Adventure Game',
+        title: 'Terror of the Northern Mountains',
         author: 'Jeremy Cerise',
         description: 'A short text based adventure game to showcase the Web Text Adventure Engine.',
         instructions: 'Type start to begin, or help for further instructions.',
         commands: {
             start: function(){
+                Game.Engine.Area.loadIntroduction();
+            }
+        }
+    },
+    introduction: {
+      title: 'Late evening in the village of Halstead, deep in the Northern Mountains',
+      description: 'The village of Halstead is largely unremarkable. The last glitter of the setting sun is disappearing ' +
+          'behind the peaks to the west, and storm clouds are building above you. Looks like snow. The small collection ' +
+          'of houses and the dirt main street that make up the town look small beneath the looming, pine covered mountains that form ' +
+          'the valley the town sits in. As you make your way along the road into the village, the creek bubbling to your left, ' +
+          'you hear the faint howl of a wolf somewhere in the distance. The muddy track that serves as the main street is ' +
+          'frozen solid, and your breath frosts in front of you as approach what passes for the town square. A larger building ' +
+          'to your right is clearly the local tavern and inn, and a warm glow is emanating from the two front windows. As ' +
+          'you approach the tavern, intent on something warm to drink, and maybe a place to stay the night, you think back ' +
+          'on the rumours that brought you to this small mining outpost in the first place.<p>A ragged traveler with a strange ' +
+          'tale, and even stranger map. If it hadn\'t been for the handful of solid gold dwarven coins he had, you never ' +
+          'would have believed his tale. And what a tale it was: A lost dwarven stronghold deep in the Northern mountains, ' +
+          'a secret entrance and a lost key, terrible guardians, and massive caches of masterfully ' +
+          'crafted dwarven weapons, piles of coins, gems and other treasures. And most importantly of all, a seeing stone ' +
+          'straight out of legend, the likes of which could turn the tide of the current war and reign in an age of peace ' +
+          'across the land.<p>It was armed with these rumours, and the travellers map (bought at a fair price, of course), ' +
+          'that you set off for the Northern mountains. Finally, after several weeks of hard travel, you arrived here, Halstead, ' +
+          'the last bit of civilization before you start your search in earnest. You push open the door of the tavern, ' +
+          'warmth washing over you as you step across the threshold.',
+        instructions: 'Type begin to start your adventure...',
+        commands: {
+            begin: function() {
                 Game.Engine.Area.switchAreas('tavern');
             }
         }
     },
     areas: {
         tavern: {
-            title: 'Village tavern',
+            title: 'Halstead Village tavern',
             description: 'You find yourself in the village tavern. There are five tables with a few chairs each, and ' +
                 'a large fireplace is casting a warm heat into the room. At the rear is the bar, with a few stools ' +
                 'in front of it. There are few patrons at this time of night, and those that are sitting around the ' +
