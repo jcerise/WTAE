@@ -5,7 +5,7 @@ GameCommands.Commands.North = {
         wtaeTerminal.echo("You cannot go that way...");
     },
     n: function() {
-        wtaeTerminal.exec("north", false);
+        wtaeTerminal.exec("north", true);
     }
 };
 
@@ -14,7 +14,7 @@ GameCommands.Commands.South = {
         wtaeTerminal.echo("You cannot go that way...");
     },
     s: function() {
-        wtaeTerminal.exec("south", false);
+        wtaeTerminal.exec("south", true);
     }
 };
 
@@ -23,7 +23,7 @@ GameCommands.Commands.East = {
         wtaeTerminal.echo("You cannot go that way...");
     },
     e: function() {
-        wtaeTerminal.exec("east", false);
+        wtaeTerminal.exec("east", true);
     }
 };
 
@@ -32,6 +32,12 @@ GameCommands.Commands.West = {
         wtaeTerminal.echo("You cannot go that way...");
     },
     w: function() {
-        wtaeTerminal.exec("west", false);
+        wtaeTerminal.exec("west", true);
+    }
+};
+
+GameCommands.Commands.Look = {
+    look: function() {
+        Game.Engine.Area.displayDescription();
     }
 };

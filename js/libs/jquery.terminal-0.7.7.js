@@ -25,6 +25,10 @@
  * Date: Wed, 09 Oct 2013 13:38:31 +0000
  */
 
+/**
+ * This version of jQuery Terminal has been modified to suit some needs of teh WTAE project. Namely, default commands,
+ * and synonym checking has been implemented when a command is not found in the current command set.
+ */
 
 (function($, undefined) {
     //"use strict";
@@ -2257,6 +2261,7 @@
             // function that maps commands to object methods
             // it keeps terminal context
             return function(command, terminal) {
+
                 if (command === '') {
                     return;
                 }
@@ -2266,9 +2271,8 @@
                 var type = $.type(val);
                 if (type === 'function') {
                     if (arity && val.length !== command.args.length) {
-                        self.error("&#91;Arity&#93; wrong number of arguments. Function '" +
-                                   command.name + "' expect " + val.length + ' got ' +
-                                   command.args.length);
+                        command.args = [null];
+                        return val.apply(self, command.args);
                     } else {
                         return val.apply(self, command.args);
                     }
@@ -2291,7 +2295,8 @@
                     });
                 } else {
                     //terminal.error("Command '" + command.name + "' Not Found");
-                    terminal.echo("You can't do that here...");
+                    //terminal.echo("You can't do that here...");
+                    Game.Engine.Parser.checkForSynonyms(command);
                 }
             };
         }
@@ -2581,32 +2586,23 @@
         // -----------------------------------------------------------------------
         // :: Wrapper over interpreter, it implements exit and catch all exeptions
         // :: from user code and display them on terminal
+        // :: MODIFIED for WTAE to remove exit and clear functions
         // -----------------------------------------------------------------------
         function commands(command, silent) {
             try {
                 prev_command = command;
                 var interpreter = interpreters.top();
                 if (command === 'exit' && settings.exit) {
-                    if (interpreters.size() === 1) {
-                        if (settings.login) {
-                            logout();
-                        } else {
-                            var msg = "You can't exit from main interpeter";
-                            if (!silent) {
-                                echo_command(command);
-                            }
-                            self.echo(msg);
-                        }
-                    } else {
-                        self.pop('exit');
-                    }
+                    //Exit needs to be removed, as it pops the current interpreter off the stack (not good)
+                    wtaeTerminal.echo('You cannot do that here...');
                 } else {
                     if (!silent) {
                         echo_command(command);
                     }
                     var position = lines.length-1;
                     if (command === 'clear' && settings.clear) {
-                        self.clear();
+                        //We need to remove the clear command, as it screws with the command loading
+                        wtaeTerminal.echo('You cannot do that here...');
                     } else {
                         var result = interpreter.interpreter(command, self);
                         if (result !== undefined) {

@@ -11,7 +11,8 @@ window.onload = function() {
         commands: [GameCommands.Commands.North,
                    GameCommands.Commands.East,
                    GameCommands.Commands.South,
-                   GameCommands.Commands.West]
+                   GameCommands.Commands.West,
+                   GameCommands.Commands.Look]
     };
 
     //Intialize the global terminal object

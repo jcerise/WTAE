@@ -6,11 +6,14 @@ Game.Engine.Area = {
     Area Handling
      */
 
+    curArea : null,
+
     /**
      * Load the title screen(area). This differs from other areas in formatting, and a more limited command set
      */
     loadTitle : function() {
         var titleArea = Game.Data['titleScreen'];
+        this.curArea = titleArea;
         var description = titleArea.description;
         var lines = Game.Engine.Text.createTextLines(description, 105);
 
@@ -32,12 +35,17 @@ Game.Engine.Area = {
      * Also, change out the command set to match the new area
      * @param area The new area to be loaded
      */
-    loadArea : function(area) {
+    loadArea : function(area, look) {
 
-        wtaeTerminal.pop();
-        wtaeTerminal.push(this.loadCommands(area['commands']), {
-            prompt: '>'
-        });
+        var look = look || false;
+
+        if (!look) {
+            wtaeTerminal.pop();
+            wtaeTerminal.push(this.loadCommands(area['commands']), {
+                prompt: '>'
+            });
+        }
+
         wtaeTerminal.clear();
         var description = area.description;
         var lines = Game.Engine.Text.createTextLines(description, 105);
@@ -55,8 +63,8 @@ Game.Engine.Area = {
      * @param area The new Area to switch to
      */
     switchAreas : function(area) {
-        var curArea = Game.Data['areas'][area];
-        this.loadArea(curArea);
+        this.curArea = Game.Data['areas'][area];
+        this.loadArea(this.curArea);
     },
 
     /**
@@ -80,6 +88,45 @@ Game.Engine.Area = {
         }
         commandSet.addCommands(commands);
         return commandSet;
+    },
+
+    displayTitle : function() {
+        wtaeTerminal.clear();
+        wtaeTerminal.echo('[[iub;#aaa;#000]' + this.curArea.title +']');
+        wtaeTerminal.echo('');
+    },
+
+    displayDescription : function() {
+        this.loadArea(this.curArea, true);
+    }
+};
+
+Game.Engine.Parser = {
+    /*
+    Command Parsing
+     */
+
+    checkForSynonyms : function(command) {
+        var arguments = command.args;
+        var commandName = command.name;
+        var synonyms = Game.Engine.Area.curArea.synonyms || {};
+        var synonymFound = false;
+        //Check the current area for any defined synonyms, and run one if it is found
+        if (Object.keys(synonyms).length > 0) {
+            for (var key in synonyms) {
+                if (key == commandName) {
+                    wtaeTerminal.exec(synonyms[key] + ' ' + arguments.toString(), true);
+                    synonymFound = true;
+                }
+            }
+        } else {
+            //If a synonym was not found, then this command cannot be run in this area
+            wtaeTerminal.echo('You cannot do that here...');
+        }
+
+        if (!synonymFound) {
+            wtaeTerminal.echo('You cannot do that here...');
+        }
     }
 };
 
@@ -107,6 +154,17 @@ Game.Engine.Text = {
             wtaeTerminal.echo(spaces + '[' + formatString + text + ']');
         } else {
             wtaeTerminal.echo(spaces + formatString + text);
+        }
+    },
+
+    echo : function(text) {
+        //Clear the terminal of other input and output, except the area description and name
+        Game.Engine.Area.displayTitle();
+
+        var cols = wtaeTerminal.cols();
+        var lines = this.createTextLines(text, cols);
+        for (var i = 0; i < lines.length; i++) {
+            wtaeTerminal.echo(lines[i]);
         }
     },
 
