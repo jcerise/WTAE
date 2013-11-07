@@ -17,12 +17,12 @@ Game.Engine.Area = {
         wtaeTerminal.push(this.loadCommands(titleArea['commands'], true), {
             prompt: '>'
         });
-        wtaeTerminal.clear();
+        Game.Engine.Display.clearDisplay();
         Game.Engine.Display.echoCenteredText(titleArea.title, '[iub;#aaa;#000]');
         Game.Engine.Display.echoCenteredText('Created and Written by: ' + titleArea.author);
-        wtaeTerminal.echo('');
+        Game.Engine.Display.echoBlank();
         Game.Engine.Display.echoParagraphs(description);
-        wtaeTerminal.echo(titleArea.instructions);
+        Game.Engine.Display.echoParagraphs(titleArea.instructions);
     },
 
     /**
@@ -37,9 +37,9 @@ Game.Engine.Area = {
         wtaeTerminal.push(this.loadCommands(introArea['commands'], true), {
             prompt: '>'
         });
-        wtaeTerminal.clear();
+        Game.Engine.Display.clearDisplay();
         Game.Engine.Display.echoCenteredText(introArea.title, '[iub;#aaa;#000]');
-        wtaeTerminal.echo('');
+        Game.Engine.Display.echoBlank();
         Game.Engine.Display.echoParagraphs(description);
         wtaeTerminal.echo(introArea.instructions);
     },
@@ -53,6 +53,7 @@ Game.Engine.Area = {
 
         var look = look || false;
 
+        //If this wasn't triggered by a look command, load up the new command set, otherwise, the commands stay the same
         if (!look) {
             wtaeTerminal.pop();
             wtaeTerminal.push(this.loadCommands(area['commands']), {
@@ -60,16 +61,10 @@ Game.Engine.Area = {
             });
         }
 
-        wtaeTerminal.clear();
         var description = area.description;
-        var lines = Game.Engine.Display.createTextLines(description, 105);
 
-        wtaeTerminal.echo('[[iub;#aaa;#000]' + area.title +']');
-        wtaeTerminal.echo('');
-        for (var i = 0; i < lines.length; i++) {
-            wtaeTerminal.echo(lines[i]);
-        }
-        wtaeTerminal.echo('');
+        Game.Engine.Display.echoClear(description);
+        Game.Engine.Display.echoBlank();
     },
 
     /**
@@ -105,9 +100,9 @@ Game.Engine.Area = {
     },
 
     displayTitle : function() {
-        wtaeTerminal.clear();
+        Game.Engine.Display.clearDisplay();
         wtaeTerminal.echo('[[iub;#aaa;#000]' + this.curArea.title +']');
-        wtaeTerminal.echo('');
+        Game.Engine.Display.echoBlank();
     },
 
     displayDescription : function() {

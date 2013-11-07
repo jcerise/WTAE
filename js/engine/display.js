@@ -3,6 +3,48 @@ Game.Engine.Display = {
     /*
      Text Output handling
      */
+
+    /**
+     * Clear the entire display
+     */
+    clearDisplay : function() {
+        wtaeTerminal.clear();
+    },
+
+    /**
+     * Echo text to the terminal without clearing the terminal, or re-outputting the titles. The output will be
+     * broken into lines.
+     * @param text The text to output
+     */
+    echo : function(text) {
+        var cols = wtaeTerminal.cols() - 5;
+        var lines = this.createTextLines(text, cols);
+        for (var i = 0; i < lines.length; i++) {
+            wtaeTerminal.echo(lines[i]);
+        }
+    },
+
+    /**
+     * Echo a blank line to the terminal, useful for separating chunks of text
+     */
+    echoBlank : function() {
+        wtaeTerminal.echo('');
+    },
+
+    /**
+     * Echo text to the terminal, clearing the terminal, and outputting the area title as well. The output will be
+     * broken into lines, but not paragraphs.
+     *
+     *
+     * @param text The text to output
+     */
+    echoClear : function(text) {
+        //Clear the terminal of other input and output, except the area description and name
+        Game.Engine.Area.displayTitle();
+
+        this.echoParagraphs(text);
+    },
+
     /**
      * Takes a string and centers its output on the terminal. Will also accept format strings.
      * @param text The string to be centered and output
@@ -22,35 +64,6 @@ Game.Engine.Display = {
             wtaeTerminal.echo(spaces + '[' + formatString + text + ']');
         } else {
             wtaeTerminal.echo(spaces + formatString + text);
-        }
-    },
-
-    /**
-     * Echo text to the terminal, clearing the terminal, and outputting the area title as well. The output will be
-     * broken into lines, but not paragraphs.
-     * @param text The text to output
-     */
-    echo : function(text) {
-        //Clear the terminal of other input and output, except the area description and name
-        Game.Engine.Area.displayTitle();
-
-        var cols = wtaeTerminal.cols();
-        var lines = this.createTextLines(text, cols);
-        for (var i = 0; i < lines.length; i++) {
-            wtaeTerminal.echo(lines[i]);
-        }
-    },
-
-    /**
-     * Echo text to the terminal without clearing the terminal, or re-outputting the titles. The output will be
-     * broken into lines.
-     * @param text The text to output
-     */
-    straightEcho : function(text) {
-        var cols = wtaeTerminal.cols() - 5;
-        var lines = this.createTextLines(text, cols);
-        for (var i = 0; i < lines.length; i++) {
-            wtaeTerminal.echo(lines[i]);
         }
     },
 
@@ -83,12 +96,18 @@ Game.Engine.Display = {
         return newLines;
     },
 
+    /**
+     * Take a string of text and break it into paragraphs (denoted by a <p> tag), and output the individual paragraphs
+     * to the terminal
+     * @param text The text string to break into paragraphs
+     */
     echoParagraphs : function(text) {
         var paragraphs = text.split('<p>');
 
         for (var i = 0; i < paragraphs.length; i ++) {
-            this.straightEcho(paragraphs[i]);
-            wtaeTerminal.echo('');
+            this.echo(paragraphs[i]);
+            //Add a space between this paragraph and the next
+            this.echoBlank();
         }
     }
 };
