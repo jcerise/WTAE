@@ -9,7 +9,7 @@ GameCommands.Commands.Go = {
             wtaeTerminal.echo("Which direction would you like to go?");
         }
     }
-}
+};
 
 GameCommands.Commands.North = {
     north: function() {
@@ -50,5 +50,42 @@ GameCommands.Commands.West = {
 GameCommands.Commands.Look = {
     look: function() {
         Game.Engine.Area.displayDescription();
+    }
+};
+
+// Conversation Command Set
+GameCommands.Commands.Conversation.ChoiceOne = {
+    one: function() {
+
+    },
+    1: function() {
+
+    }
+};
+
+GameCommands.Commands.Conversation.Choicetwo = {
+    two: function() {
+
+    },
+    2: function() {
+
+    }
+};
+
+GameCommands.Commands.Conversation.ChoiceThree = {
+    three: function() {
+
+    },
+    3: function() {
+
+    }
+};
+
+GameCommands.Commands.Conversation.ChoiceFour = {
+    four: function() {
+
+    },
+    4: function() {
+
     }
 };

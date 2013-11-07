@@ -23,7 +23,7 @@ GameCommands.CommandSet = function(properties) {
 };
 
 /**
- * Add new commands this commandSet, extending the total list of commands. If a command already exists, it will be
+ * Add new commands to this commandSet, extending the total list of commands. If a command already exists, it will be
  * overwritten by the new command
  * @param commands List of command objects to extend the base command set with
  */
