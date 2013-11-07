@@ -1,5 +1,16 @@
 GameCommands.Commands = {};
 
+GameCommands.Commands.Go = {
+    go: function(direction) {
+        direction = direction || null;
+        if (direction) {
+            wtaeTerminal.exec(direction, true);
+        } else {
+            wtaeTerminal.echo("Which direction would you like to go?");
+        }
+    }
+}
+
 GameCommands.Commands.North = {
     north: function() {
         wtaeTerminal.echo("You cannot go that way...");

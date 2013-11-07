@@ -2270,10 +2270,17 @@
                 var val = object[command.name];
                 var type = $.type(val);
                 if (type === 'function') {
+                    //Check for extra text in the command, mainly prepositions
                     if (arity && val.length !== command.args.length) {
-                        command.args = [null];
+                        if (command.args.length == 0) {
+                            command.args = [null];
+                        }else{
+                            //Clean up the command string to be as simple as possible
+                            command.args = Game.Engine.Parser.simplifyCommand(command.args);
+                        }
                         return val.apply(self, command.args);
                     } else {
+                        command.args = Game.Engine.Parser.simplifyCommand(command.args);
                         return val.apply(self, command.args);
                     }
                 } else if (type === 'object' || type === 'string') {

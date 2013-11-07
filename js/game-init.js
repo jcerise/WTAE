@@ -61,22 +61,22 @@ Game.Data = {
 
                     switch (item) {
                         case '':
-                            Game.Engine.Text.echo('What would you like to order?')
+                            Game.Engine.Display.echo('What would you like to order?')
                             break;
                         case 'ale':
-                            Game.Engine.Text.echo('You wave the barkeep over and order an ale. He returns shortly with ' +
+                            Game.Engine.Display.echo('You wave the barkeep over and order an ale. He returns shortly with ' +
                                 'a tall pewter mug of dark brown ale. As he sets it in front of you, you catch a whiff ' +
                                 'of the stuff. Its extremely strong, most likely dwarven, by the smell and color.');
                             break;
                         case 'meat':
-                            Game.Engine.Text.echo('You signal to the barkeep that you would like something to eat. He ' +
+                            Game.Engine.Display.echo('You signal to the barkeep that you would like something to eat. He ' +
                                 'disappears into the back for a few moments, and returns with a plate piled with some ' +
                                 'sort of meat on it. As he sets it in front of you, you think you recognize it as deer' +
                                 ', but you\'re not quite sure. It smells good enough, at any rate, so you try not to ' +
                                 'think too much about its origins.');
                             break;
                         default:
-                            Game.Engine.Text.echo('You wave the barkeep over and ask him for ' + item + '. He gives you ' +
+                            Game.Engine.Display.echo('You wave the barkeep over and ask him for ' + item + '. He gives you ' +
                                 'a quizzical look, and then responds, "We only got meat and ale here, nothing fancy, ' +
                                 'but it should serve for the likes of you. Now, which can I get you?"');
                             break;
@@ -87,10 +87,10 @@ Game.Data = {
 
                     switch (target) {
                         case '':
-                            Game.Engine.Text.echo('Who would you like to talk to?');
+                            Game.Engine.Display.echo('Who would you like to talk to?');
                             break;
                         default:
-                            Game.Engine.Text.echo('You see two people of interest to talk to, the barkeep, and the ' +
+                            Game.Engine.Display.echo('You see two people of interest to talk to, the barkeep, and the ' +
                                 'cloaked figure siting alone at the bar. Who would you like to talk to?');
                             break;
                     }
