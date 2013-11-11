@@ -41,7 +41,7 @@ Game.Engine.Parser = {
         var prepositions = ['about','above', 'across', 'after','against','around','at','before','behind','below',
             'beneath','beside','besides','between','beyond','by','down','during','except','for','from','in','inside',
             'into','like','near','of','off','on','out','outside','over','since','through','throughout','till','to',
-            'toward','towards','under','until','up','upon','with','without'];
+            'toward','towards','under','until','up','upon','with','without', 'the'];
         var cleanArgs = commandArgs;
 
         for (var i = 0; i < prepositions.length; i ++) {
