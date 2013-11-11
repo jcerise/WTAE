@@ -68,23 +68,6 @@ Game.Engine.Display = {
     },
 
     /**
-     * Display the conversation interface, with numbered topic choices. It won't display more than 4 choices,
-     * for simplicitys sake
-     * @param topics An array containing a list of conversation topics
-     */
-    echoConversation : function(topics) {
-        this.echo('Enter your choice of conversation topic - ');
-        for(i = 0; i < topics.length; i ++) {
-            if (i > 3) {
-                break;
-            }
-            this.echo((i + 1) + '. ' + topics[i]);
-        }
-        this.echo('end - End Conversation');
-        this.echoBlank();
-    },
-
-    /**
      * Break a chunk of text into a series of lines of lineSize length
      *
      * @param text The text to break up

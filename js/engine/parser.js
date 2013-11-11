@@ -51,6 +51,14 @@ Game.Engine.Parser = {
                 }
             }
         }
+
+        //Combine all existing arguments into one argument (E.G. 'talk to cloaked figure' would become
+        //'talk cloakedfigure'
+        var smooshedCommand = '';
+        for (var i = 0; i < commandArgs.length; i ++) {
+            smooshedCommand += commandArgs[i];
+        }
+        cleanArgs = [smooshedCommand];
         return cleanArgs;
     }
 };

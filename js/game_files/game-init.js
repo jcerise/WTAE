@@ -89,19 +89,14 @@ Game.Data = {
                             Game.Engine.Display.echoClear('Who would you like to talk to?');
                             break;
                         case 'barkeep':
-                            Game.Engine.Display.echoClear('The barkeep looks your way as you address him, "Huh, whuzzat? ' +
-                            'Did you want something then?');
-                            var convTopics = [
-                                'What can you tell me about Halstead?',
-                                'Do you know anything about dwarven ruins in the area?',
-                                'Any interesting rumours in this area?',
-                                'What do you serve, my good man?'
-                            ];
-                            Game.Engine.Display.echoConversation(convTopics);
+                            Game.Engine.Conversation.initiateConversation(Conversations.barkeep, 'Barkeep');
+                            break;
+                        case 'cloakedfigure':
+                            Game.Engine.Conversation.initiateConversation(Conversations.cloakedFigure, 'Cloaked Figure');
                             break;
                         default:
                             Game.Engine.Display.echoClear('You see two people of interest to talk to, the barkeep, and the ' +
-                                'cloaked figure siting alone at the bar. Who would you like to talk to?');
+                                'cloaked figure sitting alone at the bar. Who would you like to talk to?');
                             break;
                     }
                 }
