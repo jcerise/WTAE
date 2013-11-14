@@ -14,7 +14,13 @@ GameCommands.Commands.Go = {
 
 GameCommands.Commands.North = {
     north: function() {
-        wtaeTerminal.echo("You cannot go that way...");
+        if (Game.Engine.Area.curArea['directions'].hasOwnProperty('north')) {
+            var newArea = Game.Engine.Area.curArea['directions']['north'];
+            Game.Engine.Area.switchAreas(newArea);
+        } else {
+            //An invalid or non-existant target was supplied
+            wtaeTerminal.echo("You cannot go that way...");
+        }
     },
     n: function() {
         wtaeTerminal.exec("north", true);
@@ -23,7 +29,13 @@ GameCommands.Commands.North = {
 
 GameCommands.Commands.South = {
     south: function() {
-        wtaeTerminal.echo("You cannot go that way...");
+        if (Game.Engine.Area.curArea['directions'].hasOwnProperty('south')) {
+            var newArea = Game.Engine.Area.curArea['directions']['south'];
+            Game.Engine.Area.switchAreas(newArea);
+        } else {
+            //An invalid or non-existant target was supplied
+            wtaeTerminal.echo("You cannot go that way...");
+        }
     },
     s: function() {
         wtaeTerminal.exec("south", true);
@@ -32,7 +44,13 @@ GameCommands.Commands.South = {
 
 GameCommands.Commands.East = {
     east: function() {
-        wtaeTerminal.echo("You cannot go that way...");
+        if (Game.Engine.Area.curArea['directions'].hasOwnProperty('east')) {
+            var newArea = Game.Engine.Area.curArea['directions']['east'];
+            Game.Engine.Area.switchAreas(newArea);
+        } else {
+            //An invalid or non-existant target was supplied
+            wtaeTerminal.echo("You cannot go that way...");
+        }
     },
     e: function() {
         wtaeTerminal.exec("east", true);
@@ -41,7 +59,13 @@ GameCommands.Commands.East = {
 
 GameCommands.Commands.West = {
     west: function() {
-        wtaeTerminal.echo("You cannot go that way...");
+        if (Game.Engine.Area.curArea['directions'].hasOwnProperty('west')) {
+            var newArea = Game.Engine.Area.curArea['directions']['west'];
+            Game.Engine.Area.switchAreas(newArea);
+        } else {
+            //An invalid or non-existant target was supplied
+            wtaeTerminal.echo("You cannot go that way...");
+        }
     },
     w: function() {
         wtaeTerminal.exec("west", true);

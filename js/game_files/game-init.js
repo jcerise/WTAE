@@ -49,13 +49,17 @@ Game.Data = {
                 ' You see a sword hilt poking out from under the edge of his cloak. To your north is the door you ' +
                 'came in by, which leads to the town square. To your east is a small door, slightly ajar, which looks' +
                 ' to lead to a storeroom.',
+            directions : {
+                north: 'townSquare',
+                east: 'storeRoom'
+            },
             commands: {
-                north: function(){
+                /*north: function(){
                     Game.Engine.Area.switchAreas('townSquare');
                 },
                 east: function() {
                     Game.Engine.Area.switchAreas('storeRoom');
-                },
+                },*/
                 order: function(item) {
                     item = item || '';
 
@@ -98,19 +102,23 @@ Game.Data = {
         storeRoom: {
             title: 'Store Room',
             description: 'This is a simple store room for the tavern, there is nothing special here. The exit is to the west.',
+            directions: {
+                west: 'tavern'
+            },
             commands: {
-                west: function(){
-                    Game.Engine.Area.switchAreas('tavern');
-                }
             }
         },
         townSquare: {
             title: 'Town Square',
-            description: 'The town square is more or less abandoned at this hour. The tavern is to the south.',
+            description: 'The town square is more or less abandoned at this hour. You see a man, obviously drunk, ' +
+                            'slouching against the side of the tavern. The tavern is to your south.',
+            directions: {
+                south: 'tavern'
+            },
             commands: {
-                south: function(){
-                    Game.Engine.Area.switchAreas('tavern');
-                }
+            },
+            npcs: {
+                drunk: Conversations.drunk
             }
         }
     }

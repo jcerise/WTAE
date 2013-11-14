@@ -23,5 +23,10 @@ Conversations = {
     cloakedFigure : {
         response: 'You hail the cloaked man sitting at the bar, but he does not acknowledge you...',
         choices: {}
+    },
+    drunk : {
+        response: 'You approach the drunk man, and are immediately assailed by the strong smell of vomit and alcohol. ' +
+                    'The man looks at you, blinking against the light of the lamp behind you. "*Hic*.',
+        choices: {}
     }
 };
