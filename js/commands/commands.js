@@ -1,5 +1,6 @@
 GameCommands.Commands = {};
 
+/* Movement Commands */
 GameCommands.Commands.Go = {
     go: function(direction) {
         direction = direction || null;
@@ -53,39 +54,23 @@ GameCommands.Commands.Look = {
     }
 };
 
-// Conversation Command Set
-GameCommands.Commands.Conversation.ChoiceOne = {
-    one: function() {
+/* Interaction Commands */
+GameCommands.Commands.Talk = {
+    talk: function(target) {
+        target = target || null;
 
-    },
-    1: function() {
-
+        //Check if a target was supplied
+        if (target) {
+            //Check if the target supplied is an NPC that can be conversed with
+            if (Game.Engine.Area.curArea['npcs'].hasOwnProperty(target)) {
+                Game.Engine.Conversation.initiateConversation(Game.Engine.Area.curArea['npcs'][target], target);
+            } else {
+                //An invalid or non-existant target was supplied
+                wtaeTerminal.echo("You can't talk to someone who's not here...");
+            }
+        } else {
+            //No target was supplied
+            wtaeTerminal.echo("Hmm? Who would you like to talk to?");
+        }
     }
-};
-
-GameCommands.Commands.Conversation.Choicetwo = {
-    two: function() {
-
-    },
-    2: function() {
-
-    }
-};
-
-GameCommands.Commands.Conversation.ChoiceThree = {
-    three: function() {
-
-    },
-    3: function() {
-
-    }
-};
-
-GameCommands.Commands.Conversation.ChoiceFour = {
-    four: function() {
-
-    },
-    4: function() {
-
-    }
-};
+}

@@ -81,24 +81,6 @@ Game.Data = {
                                 'but it should serve for the likes of you. Now, which can I get you?"');
                             break;
                     }
-                },
-                talk: function(target) {
-                    target = target || '';
-                    switch (target) {
-                        case '':
-                            Game.Engine.Display.echoClear('Who would you like to talk to?');
-                            break;
-                        case 'barkeep':
-                            Game.Engine.Conversation.initiateConversation(Conversations.barkeep, 'Barkeep');
-                            break;
-                        case 'cloakedfigure':
-                            Game.Engine.Conversation.initiateConversation(Conversations.cloakedFigure, 'Cloaked Figure');
-                            break;
-                        default:
-                            Game.Engine.Display.echoClear('You see two people of interest to talk to, the barkeep, and the ' +
-                                'cloaked figure sitting alone at the bar. Who would you like to talk to?');
-                            break;
-                    }
                 }
             },
             synonyms : {
@@ -107,6 +89,10 @@ Game.Data = {
                 ale: 'order ale',
                 meat: 'order meat',
                 converse: 'talk'
+            },
+            npcs : {
+                barkeep: Conversations.barkeep,
+                cloakedfigure: Conversations.cloakedFigure
             }
         },
         storeRoom: {

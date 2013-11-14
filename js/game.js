@@ -13,7 +13,8 @@ window.onload = function() {
                    GameCommands.Commands.East,
                    GameCommands.Commands.South,
                    GameCommands.Commands.West,
-                   GameCommands.Commands.Look]
+                   GameCommands.Commands.Look,
+                   GameCommands.Commands.Talk]
     };
 
     Game.ConversationCommands = {
