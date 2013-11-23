@@ -87,7 +87,8 @@ GameCommands.Commands.Talk = {
         if (target) {
             //Check if the target supplied is an NPC that can be conversed with
             if (Game.Engine.Area.curArea['npcs'].hasOwnProperty(target)) {
-                Game.Engine.Conversation.initiateConversation(Game.Engine.Area.curArea['npcs'][target], target);
+                var npc = Game.Engine.Area.curArea['npcs'][target]
+                Game.Engine.Conversation.initiateConversation(npc[0], npc[1]);
             } else {
                 //An invalid or non-existant target was supplied
                 wtaeTerminal.echo("You can't talk to someone who's not here...");

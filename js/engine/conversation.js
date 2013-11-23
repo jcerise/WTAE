@@ -16,7 +16,7 @@ Game.Engine.Conversation = {
         this.currentBranch = conversationTree;
         this.conversationPartner = partner;
 
-        Game.Engine.Display.echoClear('Conversation with ' + this.conversationPartner);
+        Game.Engine.Display.echoClear('Conversation with ' + this.conversationPartner, false);
         Game.Engine.Display.echo(conversationTree.response);
         Game.Engine.Display.echoBlank();
         this.choiceCommands = this.echoConversation(conversationTree);

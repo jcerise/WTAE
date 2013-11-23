@@ -54,12 +54,6 @@ Game.Data = {
                 east: 'storeRoom'
             },
             commands: {
-                /*north: function(){
-                    Game.Engine.Area.switchAreas('townSquare');
-                },
-                east: function() {
-                    Game.Engine.Area.switchAreas('storeRoom');
-                },*/
                 order: function(item) {
                     item = item || '';
 
@@ -95,8 +89,8 @@ Game.Data = {
                 converse: 'talk'
             },
             npcs : {
-                barkeep: Conversations.barkeep,
-                cloakedfigure: Conversations.cloakedFigure
+                barkeep: [Conversations.barkeep, 'Barkeep'],
+                cloakedfigure: [Conversations.cloakedFigure, 'Cloaked Figure']
             }
         },
         storeRoom: {
@@ -118,7 +112,7 @@ Game.Data = {
             commands: {
             },
             npcs: {
-                drunk: Conversations.drunk
+                drunk: [Conversations.drunk, 'Drunk']
             }
         }
     }

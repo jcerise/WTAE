@@ -19,11 +19,11 @@ window.onload = function() {
 
     Game.ConversationCommands = {
         commands: []
-    }
+    };
 
     //Intialize the global terminal object
     wtaeTerminal = $('.terminal').terminal(function() { }, { });
 
     //Initialize the game
     Game.init();
-}
+};

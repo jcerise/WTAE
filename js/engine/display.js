@@ -16,11 +16,16 @@ Game.Engine.Display = {
      * broken into lines.
      * @param text The text to output
      */
-    echo : function(text) {
+    echo : function(text, formatString) {
+        formatString = formatString || '';
         var cols = wtaeTerminal.cols() - 5;
         var lines = this.createTextLines(text, cols);
         for (var i = 0; i < lines.length; i++) {
-            wtaeTerminal.echo(lines[i]);
+            if (formatString != '') {
+                wtaeTerminal.echo('[' + formatString + lines[i] + ']');
+            } else {
+                wtaeTerminal.echo(lines[i]);
+            }
         }
     },
 
@@ -35,14 +40,22 @@ Game.Engine.Display = {
      * Echo text to the terminal, clearing the terminal, and outputting the area title as well. The output will be
      * broken into lines, but not paragraphs.
      *
-     *
      * @param text The text to output
+     * @param displayInfo Whether or not to display NPC, Item, and Direction info on the new screen
      */
-    echoClear : function(text) {
+    echoClear : function(text, displayInfo) {
+        if (displayInfo == null) {
+            displayInfo = true;
+        }
         //Clear the terminal of other input and output, except the area description and name
         Game.Engine.Area.displayTitle();
 
         this.echoParagraphs(text);
+
+        if (displayInfo) {
+            this.echoNpcs();
+        }
+
     },
 
     /**
@@ -108,6 +121,18 @@ Game.Engine.Display = {
             this.echo(paragraphs[i]);
             //Add a space between this paragraph and the next
             this.echoBlank();
+        }
+    },
+
+    /**
+     * Display a list of all NPCs which the player can interact with
+     */
+    echoNpcs : function() {
+        this.echoBlank();
+
+        this.echo('NPCs', '[iub;#aaa;#000]');
+        for (var npc in Game.Engine.Area.curArea.npcs) {
+            this.echo(Game.Engine.Area.curArea.npcs[npc][1]);
         }
     }
 };
