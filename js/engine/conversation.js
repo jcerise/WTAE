@@ -47,7 +47,7 @@ Game.Engine.Conversation = {
             this.currentBranch = conversationBranch;
 
             //Output the boilerplate for this branch, including who the player is talking to
-            Game.Engine.Display.echoClear('Conversation with ' + this.conversationPartner);
+            Game.Engine.Display.echoClear('Conversation with ' + this.conversationPartner, false);
             Game.Engine.Display.echo(conversationBranch.response);
             Game.Engine.Display.echoBlank();
             //Output the choices for this branch
@@ -107,7 +107,7 @@ Game.Engine.Conversation = {
         for(var conditionType in conditions) {
             switch (conditionType) {
                 case 'inventory':
-                    //Player must have a specifi item in their inventory for this condition to be met
+                    //Player must have a specific item in their inventory for this condition to be met
                     conditionsMet = true;
                     break;
                 case 'stat':
