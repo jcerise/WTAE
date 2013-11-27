@@ -62,8 +62,23 @@ Game.Engine.Area = {
         }
 
         var description = area.description;
+        var itemDescriptions = '';
 
-        Game.Engine.Display.echoClear(description);
+        //Load up dynamic item descriptions based on what is currently in the area (not in the player inventory)
+        for (var item in Game.Engine.Area.curArea.items) {
+            var curItem = Game.Engine.Area.curArea.items[item];
+            if (curItem['prerequisite'] == null) {
+                //There are no viewing prerequisites for this item, so display it
+                itemDescriptions += ' You see a ' + curItem['name'] + ' ' + curItem['desc_suffix'];
+            } else {
+                if (Game.Engine.Inventory.checkPrerequisites(curItem)) {
+                    //The player meets the prerequisites to view this item, so display it
+                }
+            }
+        }
+
+        //Display the description, with any visible items displayed below it
+        Game.Engine.Display.echoClear(description + ' ' + itemDescriptions, true);
         Game.Engine.Display.echoBlank();
     },
 

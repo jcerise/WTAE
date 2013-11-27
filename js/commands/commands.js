@@ -78,7 +78,7 @@ GameCommands.Commands.Look = {
     }
 };
 
-/* Interaction Commands */
+/* NPC Interaction Commands */
 GameCommands.Commands.Talk = {
     talk: function(target) {
         target = target || null;
@@ -99,3 +99,10 @@ GameCommands.Commands.Talk = {
         }
     }
 }
+
+/* Inventory Commands */
+GameCommands.Commands.Take = {
+    take: function(target) {
+
+    }
+};

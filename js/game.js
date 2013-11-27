@@ -17,10 +17,6 @@ window.onload = function() {
                    GameCommands.Commands.Talk]
     };
 
-    Game.ConversationCommands = {
-        commands: []
-    };
-
     //Intialize the global terminal object
     wtaeTerminal = $('.terminal').terminal(function() { }, { });
 

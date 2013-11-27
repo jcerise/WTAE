@@ -91,6 +91,11 @@ Game.Data = {
             npcs : {
                 barkeep: [Conversations.barkeep, 'Barkeep'],
                 cloakedfigure: [Conversations.cloakedFigure, 'Cloaked Figure']
+            },
+            items : {
+                wantedPoster: Items.wantedPoster,
+                dagger: Items.dagger,
+                flask: Items.flask
             }
         },
         storeRoom: {
