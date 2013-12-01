@@ -108,7 +108,14 @@ Game.Engine.Conversation = {
             switch (conditionType) {
                 case 'inventory':
                     //Player must have a specific item in their inventory for this condition to be met
-                    conditionsMet = true;
+                    var itemName = conditions[conditionType];
+                    var index = Game.Engine.Inventory.inInventory(itemName);
+                    if (Game.Engine.Inventory.inInventory(itemName) > -1) {
+                        conditionsMet = true;
+                    } else {
+                        conditionsMet = false;
+                    }
+
                     break;
                 case 'stat':
                     //Player must have a stat at a certain level for this condition to be met
