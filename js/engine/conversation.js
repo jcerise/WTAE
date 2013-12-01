@@ -130,5 +130,18 @@ Game.Engine.Conversation = {
      */
     endConversation : function() {
         Game.Engine.Area.loadArea(Game.Engine.Area.curArea, false);
+    },
+
+    /**
+     * Display a list of all NPCs which the player can interact with
+     */
+    echoNpcs : function() {
+        Game.Engine.Display.echoBlank();
+
+        Game.Engine.Display.echo('NPCs', '[iub;#aaa;#000]');
+        for (var npc in Game.Engine.Area.curArea.npcs) {
+            Game.Engine.Display.echo(Game.Engine.Area.curArea.npcs[npc][1]);
+        }
     }
+
 }

@@ -101,8 +101,45 @@ GameCommands.Commands.Talk = {
 }
 
 /* Inventory Commands */
-GameCommands.Commands.Take = {
+GameCommands.Commands.Inventory = {
     take: function(target) {
+        target = target || null;
 
+        //Check if a target has been supplied
+        if (target) {
+            if (Game.Engine.Area.curArea['items'].hasOwnProperty(target)) {
+                var item = Game.Engine.Area.curArea['items'][target];
+                //Add the item to the players inventory
+                Game.Engine.Inventory.addItem(target);
+                //Remove the item from the area
+                delete Game.Engine.Area.curArea['items'][target];
+                //Update the area description to reflect the item no longer being there
+                Game.Engine.Area.displayDescription();
+                Game.Engine.Display.echo('You have added the ' + item.name + ' to your inventory.');
+            } else {
+                //An invalid or non-existant item was supplied
+                wtaeTerminal.echo("There is no such item here...");
+            }
+        } else {
+            //No target supplied
+            wtaeTerminal.echo('Hmm? What would you like to take?');
+        }
+    },
+    drop: function(target) {
+        target = target || null;
+        //Check if a target item has been supplied
+        if (target) {
+            if (Game.Engine.Inventory.inInventory(target) > -1) {
+                var item = Items[target];
+                item['desc_suffix'] = 'lying on the ground.';
+                Game.Engine.Inventory.removeItem(target);
+                Game.Engine.Area.curArea['items'][target] = item;
+                Game.Engine.Area.displayDescription();
+                Game.Engine.Display.echo('You have dropped the ' + item.name + '.');
+            } else {
+                //An invalid item was supplied (non-existant or not in inventory)
+                wtaeTerminal.echo('You don\'t seem to have that item in your inventory...');
+            }
+        }
     }
 };

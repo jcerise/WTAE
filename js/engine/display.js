@@ -53,7 +53,7 @@ Game.Engine.Display = {
         this.echoParagraphs(text);
 
         if (displayInfo) {
-            this.echoNpcs();
+            Game.Engine.Conversation.echoNpcs();
         }
 
     },
@@ -121,18 +121,6 @@ Game.Engine.Display = {
             this.echo(paragraphs[i]);
             //Add a space between this paragraph and the next
             this.echoBlank();
-        }
-    },
-
-    /**
-     * Display a list of all NPCs which the player can interact with
-     */
-    echoNpcs : function() {
-        this.echoBlank();
-
-        this.echo('NPCs', '[iub;#aaa;#000]');
-        for (var npc in Game.Engine.Area.curArea.npcs) {
-            this.echo(Game.Engine.Area.curArea.npcs[npc][1]);
         }
     }
 };

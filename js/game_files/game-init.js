@@ -93,7 +93,7 @@ Game.Data = {
                 cloakedfigure: [Conversations.cloakedFigure, 'Cloaked Figure']
             },
             items : {
-                wantedPoster: Items.wantedPoster,
+                wantedposter: Items.wantedposter,
                 dagger: Items.dagger,
                 flask: Items.flask
             }
@@ -105,7 +105,9 @@ Game.Data = {
                 west: 'tavern'
             },
             commands: {
-            }
+            },
+            npcs: {},
+            items: {}
         },
         townSquare: {
             title: 'Town Square',
@@ -118,7 +120,8 @@ Game.Data = {
             },
             npcs: {
                 drunk: [Conversations.drunk, 'Drunk']
-            }
+            },
+            items: {}
         }
     }
 };

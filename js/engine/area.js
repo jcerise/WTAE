@@ -71,7 +71,7 @@ Game.Engine.Area = {
                 //There are no viewing prerequisites for this item, so display it
                 itemDescriptions += ' You see a ' + curItem['name'] + ' ' + curItem['desc_suffix'];
             } else {
-                if (Game.Engine.Inventory.checkPrerequisites(curItem)) {
+                if (Game.Engine.Inventory.checkItemPrerequisites(curItem)) {
                     //The player meets the prerequisites to view this item, so display it
                 }
             }

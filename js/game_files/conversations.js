@@ -17,6 +17,13 @@ Conversations = {
                         choices: {}
                     }
                 }
+            },
+            'What can you tell me about this wanted poster?': {
+                response: 'Not much, perhaps you should read it over and go talk to the constabul.',
+                choices: {},
+                requires: {
+                    inventory: 'wantedposter'
+                }
             }
         }
     },

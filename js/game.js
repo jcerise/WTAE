@@ -14,7 +14,8 @@ window.onload = function() {
                    GameCommands.Commands.South,
                    GameCommands.Commands.West,
                    GameCommands.Commands.Look,
-                   GameCommands.Commands.Talk]
+                   GameCommands.Commands.Talk,
+                   GameCommands.Commands.Inventory]
     };
 
     //Intialize the global terminal object

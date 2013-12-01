@@ -5,7 +5,7 @@ Items = {
         prerequisite : null,
         desc_suffix : 'sitting on the mantle above the fireplace.'
     },
-    wantedPoster : {
+    wantedposter : {
         name : 'Wanted Poster',
         description : 'A tattered piece of faded paper with some text scrawled across it. It reads: "WANTED: Any information ' +
             'regarding the recent thefts of tools occuring around the village. Reward: 10 Silver. See the Marshall for ' +

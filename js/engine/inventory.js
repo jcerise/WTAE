@@ -4,10 +4,21 @@ Game.Engine.Inventory = {
 
     /**
      * Add an item to the players inventory
-     * @param itemName
+     * @param itemName The name of the item to add
      */
     addItem : function(itemName) {
         this.contents.push(itemName);
+    },
+
+    /**
+     * Remove an item from the players inventory
+     * @param itemName The name of the item to remove
+     */
+    removeItem : function(itemName) {
+        var index = this.contents.indexOf(itemName);
+        if (index >= -1) {
+            this.contents.splice(index, 1);
+        }
     },
 
     /**
@@ -19,7 +30,8 @@ Game.Engine.Inventory = {
         return this.contents.indexOf(itemName);
     },
 
-    checkPrerequisites : function(item) {
+
+    checkItemPrerequisites : function(item) {
 
     }
 
