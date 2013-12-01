@@ -1,7 +1,7 @@
 GameCommands.Commands = {};
 
 /* Movement Commands */
-GameCommands.Commands.Go = {
+GameCommands.Commands.Direction = {
     go: function(direction) {
         direction = direction || null;
         if (direction) {
@@ -9,10 +9,7 @@ GameCommands.Commands.Go = {
         } else {
             wtaeTerminal.echo("Which direction would you like to go?");
         }
-    }
-};
-
-GameCommands.Commands.North = {
+    },
     north: function() {
         if (Game.Engine.Area.curArea['directions'].hasOwnProperty('north')) {
             var newArea = Game.Engine.Area.curArea['directions']['north'];
@@ -24,10 +21,7 @@ GameCommands.Commands.North = {
     },
     n: function() {
         wtaeTerminal.exec("north", true);
-    }
-};
-
-GameCommands.Commands.South = {
+    },
     south: function() {
         if (Game.Engine.Area.curArea['directions'].hasOwnProperty('south')) {
             var newArea = Game.Engine.Area.curArea['directions']['south'];
@@ -39,10 +33,7 @@ GameCommands.Commands.South = {
     },
     s: function() {
         wtaeTerminal.exec("south", true);
-    }
-};
-
-GameCommands.Commands.East = {
+    },
     east: function() {
         if (Game.Engine.Area.curArea['directions'].hasOwnProperty('east')) {
             var newArea = Game.Engine.Area.curArea['directions']['east'];
@@ -54,10 +45,7 @@ GameCommands.Commands.East = {
     },
     e: function() {
         wtaeTerminal.exec("east", true);
-    }
-};
-
-GameCommands.Commands.West = {
+    },
     west: function() {
         if (Game.Engine.Area.curArea['directions'].hasOwnProperty('west')) {
             var newArea = Game.Engine.Area.curArea['directions']['west'];
@@ -70,6 +58,7 @@ GameCommands.Commands.West = {
     w: function() {
         wtaeTerminal.exec("west", true);
     }
+
 };
 
 GameCommands.Commands.Look = {
@@ -129,11 +118,16 @@ GameCommands.Commands.Inventory = {
         target = target || null;
         //Check if a target item has been supplied
         if (target) {
+            //Check the player actually has the item in their inventory
             if (Game.Engine.Inventory.inInventory(target) > -1) {
                 var item = Items[target];
+                //Change the suffix to reflect the item being dropped
                 item['desc_suffix'] = 'lying on the ground.';
+                //remove the item from the inventory
                 Game.Engine.Inventory.removeItem(target);
+                //Add the item to the world
                 Game.Engine.Area.curArea['items'][target] = item;
+                //Update the area description
                 Game.Engine.Area.displayDescription();
                 Game.Engine.Display.echo('You have dropped the ' + item.name + '.');
             } else {

@@ -8,11 +8,7 @@ window.onload = function() {
 
     //Set up the command set to use
     Game.BaseCommands = {
-        commands: [GameCommands.Commands.Go,
-                   GameCommands.Commands.North,
-                   GameCommands.Commands.East,
-                   GameCommands.Commands.South,
-                   GameCommands.Commands.West,
+        commands: [GameCommands.Commands.Direction,
                    GameCommands.Commands.Look,
                    GameCommands.Commands.Talk,
                    GameCommands.Commands.Inventory]
