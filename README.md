@@ -21,3 +21,6 @@ How to Run
 -------
 
 Simply clone the repository, and open index.html in your favorite browser.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jcerise/wtae/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
