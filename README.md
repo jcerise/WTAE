@@ -22,5 +22,7 @@ How to Run
 
 Simply clone the repository, and open index.html in your favorite browser.
 
+You can also play the current working build (with my terribly cliche test module, Terror of the Northern Mountains) here: http://wtae.polar-citadel.com/
+
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jcerise/wtae/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
