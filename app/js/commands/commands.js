@@ -135,5 +135,11 @@ GameCommands.Commands.Inventory = {
                 wtaeTerminal.echo('You don\'t seem to have that item in your inventory...');
             }
         }
+    },
+    inventory: function() {
+        Game.Engine.Inventory.displayInventory();
+    },
+    i: function() {
+        GameCommands.Commands.Inventory.inventory();
     }
 };

@@ -33,6 +33,17 @@ Game.Engine.Inventory = {
 
     checkItemPrerequisites : function(item) {
 
+    },
+
+    /**
+     * Display the players inventory screen
+     */
+    displayInventory : function() {
+        Game.Engine.Display.echoClear("In your inventory you have the following: ", false);
+        for (var i = 0; i < this.contents.length; i ++) {
+            Game.Engine.Display.echo(Items[this.contents[i]].name);
+        }
+        Game.Engine.Display.echoBlank();
     }
 
 };
