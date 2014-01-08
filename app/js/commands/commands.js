@@ -134,6 +134,9 @@ GameCommands.Commands.Inventory = {
                 //An invalid item was supplied (non-existant or not in inventory)
                 wtaeTerminal.echo('You don\'t seem to have that item in your inventory...');
             }
+        } else {
+            //No target supplied
+            wtaeTerminal.echo('Hmm? What would you like to drop?');
         }
     },
     inventory: function() {
@@ -141,5 +144,21 @@ GameCommands.Commands.Inventory = {
     },
     i: function() {
         GameCommands.Commands.Inventory.inventory();
+    },
+    examine: function(target) {
+        target = target || null;
+        //Check if a target has been supplied
+        if (target) {
+            //Check the player actually has the item in their inventory
+            if (Game.Engine.Inventory.inInventory(target) > -1) {
+                Game.Engine.Inventory.examineItem(target);
+            } else {
+                //An invalid choice was supplied (either non-existant, or not in inventory)
+                wtaeTerminal.echo('You don\'t seem to have that item in your inventory...');
+            }
+        } else {
+            //No target supplied
+            wtaeTerminal.echo('Hmm? What would you like to examine?');
+        }
     }
 };
