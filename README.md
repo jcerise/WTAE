@@ -27,7 +27,7 @@ WTAE can also be run as a simple Node application by running
 node server.js
 ```
 
-You can also play the current working build (with my terribly cliche test module, Terror of the Northern Mountains) here: http://wtae.polar-citadel.com/
+You can also play the current working build (with my terribly cliche test module, Terror of the Northern Mountains) here: http://powerful-gorge-7147.herokuapp.com/
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jcerise/wtae/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
