@@ -1,26 +1,34 @@
 {
-    "name": "wtae",
-    "version": "0.0.1",
-    "description": "Web text adeventure Engine",
-    "main": "server.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "dependencies": {
-        "express": "~3.3.4",
-        "newrelic": ">=0.9"
-    },
-    "engines": {
-        "node": "0.10.x",
-        "npm": "1.3.x"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/jcerise/wtae"
-    },
-    "keywords": [
-        "node"
-    ],
-    "author": "Jeremy Cerise",
-    "license": "BSD"
+  "name": "wtae",
+  "version": "0.0.1",
+  "description": "Web text adeventure Engine",
+  "main": "server.js",
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-clean": "~0.5.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "~3.3.4",
+    "newrelic": ">=0.9"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.3.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcerise/wtae"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Jeremy Cerise",
+  "license": "BSD"
 }

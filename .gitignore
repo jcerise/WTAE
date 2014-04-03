@@ -2,3 +2,5 @@
 .idea/*
 node-modules/*
 node-modules
+app/build/*
+app/build
