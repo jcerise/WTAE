@@ -20,7 +20,15 @@ surprised if a lot of the above isn't in place yet.
 How to Run
 -------
 
-Simply clone the repository, and open index.html in your favorite browser.
+Way 1:
+
+Run the included gruntfile using Grunt, open up app/build, and run index.html.
+
+Way 2:
+
+Open app/index.html in your favorite browser.
+
+Way 3:
 
 WTAE can also be run as a simple Node application by running 
 ```

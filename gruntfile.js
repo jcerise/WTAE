@@ -47,6 +47,30 @@ module.exports = function(grunt) {
 			}
 		},
 
+		htmlbuild: {
+			dist: {
+				src: 'app/index.html',
+				dest: 'app/build',
+				options: {
+					beautify: true,
+					relative: true,
+					scripts: {
+						bundle: [
+							'app/build/libs/async_storage.js',
+							'app/build/libs/jquery-1.10.2.min.js',
+							'app/build/libs/jquery.terminal-0.7.7.js',
+							'app/build/wtae.min.js'
+						]
+					},
+					styles: {
+						bundle: [
+							'app/build/css/wtae.min.css'
+						]
+					}
+				}
+			}
+		},
+
 		clean: ['app/build/wtae.js']
 	});
 
@@ -54,7 +78,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-contrib-clean')
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-html-build');
 
-	grunt.registerTask('default', ['concat', 'copy', 'uglify', 'cssmin', 'clean']);
+	grunt.registerTask('default', ['concat', 'copy', 'uglify', 'cssmin', 'htmlbuild', 'clean']);
 };
