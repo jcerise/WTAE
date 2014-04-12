@@ -50,8 +50,14 @@ Game.Data = {
                 'came in by, which leads to the town square. To your east is a small door, slightly ajar, which looks' +
                 ' to lead to a storeroom.',
             directions : {
-                north: 'townSquare',
-                east: 'storeRoom'
+                north: {
+                    leadsTo : 'townSquare',
+                    blockedBy : null
+                },
+                east : {
+                    leadsTo : 'storeRoom',
+                    blockedBy : Objects.storeroomdoor
+                }
             },
             commands: {
                 order: function(item) {
@@ -94,8 +100,9 @@ Game.Data = {
             },
             items : {
                 wantedposter: Items.wantedposter,
-                dagger: Items.dagger,
-                flask: Items.flask
+                irondagger: Items.dagger,
+                flask: Items.flask,
+                tavernkey: Items.tavernkey
             }
         },
         storeRoom: {

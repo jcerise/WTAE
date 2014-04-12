@@ -88,6 +88,9 @@ Game.Engine.Inventory = {
 
         for(var conditionType in conditions) {
             switch (conditionType) {
+                case 'inventory':
+                    //Player must have a certain item in their inventory
+                    break;
                 case 'perception':
                     //Player must have perception at or above level
                     var perceptionThreshold = conditions[conditionType];

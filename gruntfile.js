@@ -11,6 +11,7 @@ module.exports = function(grunt) {
 					'app/js/game.js',
 					'app/js/game_files/conversations.js',
 					'app/js/game_files/items.js',
+					'app/js/game_files/objects.js',
 					'app/js/game_files/game-init.js',
 					'app/js/engine/engine.js',
 					'app/js/engine/area.js',

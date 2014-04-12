@@ -12,8 +12,19 @@ GameCommands.Commands.Direction = {
     },
     north: function() {
         if (Game.Engine.Area.curArea['directions'].hasOwnProperty('north')) {
-            var newArea = Game.Engine.Area.curArea['directions']['north'];
-            Game.Engine.Area.switchAreas(newArea);
+            if (Game.Engine.Area.curArea['directions']['north']['blockedBy'] == null) {
+                var newArea = Game.Engine.Area.curArea['directions']['north'];
+                Game.Engine.Area.switchAreas(newArea);
+            } else {
+                var blockingObject = Game.Engine.curArea['directions']['north']['blockedBy'];
+                if (!blockingObject.active) {
+                    wtaeTerminal.echo('You attempt to head North. ' + blockingObject.non_active_text);
+                } else {
+                    wtaeTerminal.echo('You head North. ' + blockingObject.active_text);
+                    var newArea = Game.Engine.Area.curArea['directions']['north'];
+                    Game.Engine.Area.switchAreas(newArea);
+                }
+            }
         } else {
             //An invalid or non-existant target was supplied
             wtaeTerminal.echo("You cannot go that way...");
@@ -36,8 +47,28 @@ GameCommands.Commands.Direction = {
     },
     east: function() {
         if (Game.Engine.Area.curArea['directions'].hasOwnProperty('east')) {
-            var newArea = Game.Engine.Area.curArea['directions']['east'];
-            Game.Engine.Area.switchAreas(newArea);
+            if (Game.Engine.Area.curArea['directions']['east']['blockedBy'] == null) {
+                var newArea = Game.Engine.Area.curArea['directions']['east']['leadsTo'];
+                Game.Engine.Area.switchAreas(newArea);
+            } else {
+                var blockingObject = Game.Engine.Area.curArea['directions']['east']['blockedBy'];
+                if (!blockingObject.active) {
+                    var activationItem = blockingObject.activates_with;
+                    if (Game.Engine.Inventory.inInventory(activationItem.system_name) > -1) {
+                        var message = 'You attempt to head East. ' + blockingObject.description + ' ' +
+                            blockingObject.activation_text;
+                        blockingObject.active = true;
+                        var newArea = Game.Engine.Area.curArea['directions']['east']['leadsTo'];
+                        Game.Engine.Area.switchAreas(newArea, message);
+                    } else {
+                        wtaeTerminal.echo('You attempt to head East. ' + blockingObject.non_active_text);
+                    }
+                } else {
+                    var message = 'You head East. ' + blockingObject.active_text;
+                    var newArea = Game.Engine.Area.curArea['directions']['east']['leadsTo'];
+                    Game.Engine.Area.switchAreas(newArea, message);
+                }
+            }
         } else {
             //An invalid or non-existant target was supplied
             wtaeTerminal.echo("You cannot go that way...");
@@ -159,6 +190,20 @@ GameCommands.Commands.Inventory = {
         } else {
             //No target supplied
             wtaeTerminal.echo('Hmm? What would you like to examine?');
+        }
+    },
+    use: function(item, target) {
+        target = target || null;
+        item = item || null;
+        //First, check if an item has been supplied
+        if (item) {
+            if (target) {
+
+            } else {
+                wtaeTerminal.echo('Hmm? What would you like to use the ' + item + ' on?')
+            }
+        } else {
+            wtaeTerminal.echo("Hmm? What would you like to use?")
         }
     }
 };

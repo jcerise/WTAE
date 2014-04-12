@@ -49,9 +49,10 @@ Game.Engine.Area = {
      * Also, change out the command set to match the new area
      * @param area The new area to be loaded
      */
-    loadArea : function(area, look) {
+    loadArea : function(area, look, message) {
 
         var look = look || false;
+        var message = message || false;
 
         //If this wasn't triggered by a look command, load up the new command set, otherwise, the commands stay the same
         if (!look) {
@@ -78,6 +79,9 @@ Game.Engine.Area = {
         }
 
         //Display the description, with any visible items displayed below it
+        if (message) {
+            description = message + '\n\n' + description;
+        }
         Game.Engine.Display.echoClear(description + ' ' + itemDescriptions, true);
         Game.Engine.Display.echoBlank();
     },
@@ -86,9 +90,14 @@ Game.Engine.Area = {
      * Initiate an area switch
      * @param area The new Area to switch to
      */
-    switchAreas : function(area) {
+    switchAreas : function(area, message) {
+        message = message || false;
         this.curArea = Game.Data['areas'][area];
-        this.loadArea(this.curArea);
+        if (message) {
+            this.loadArea(this.curArea, false, message)
+        } else {
+            this.loadArea(this.curArea);
+        }
     },
 
     /**
