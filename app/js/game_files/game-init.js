@@ -109,7 +109,10 @@ Game.Data = {
             title: 'Store Room',
             description: 'This is a simple store room for the tavern, there is nothing special here. The exit is to the west.',
             directions: {
-                west: 'tavern'
+                west: {
+                    leadsTo : 'tavern',
+                    blockedBy : null
+                }
             },
             commands: {
             },
@@ -121,7 +124,10 @@ Game.Data = {
             description: 'The town square is more or less abandoned at this hour. You see a man, obviously drunk, ' +
                             'slouching against the side of the tavern. The tavern is to your south.',
             directions: {
-                south: 'tavern'
+                south : {
+                    leadsTo : 'tavern',
+                    blockedBy : null
+                }
             },
             commands: {
             },
